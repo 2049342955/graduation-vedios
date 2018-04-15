@@ -24,13 +24,13 @@
     "async-validate": "^1.0.1",
     "autoprefixer": "^7.1.6",
     "axios": "^0.17.1",
-
     "echarts": "^4.0.4",
     "element-ui": "^2.2.2",
     "lodash": "^4.17.5",
     "moment": "^2.21.0",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-video": "^0.1.7"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

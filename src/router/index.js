@@ -5,6 +5,9 @@ import MAIN from '@/pages/main'
 import UserProfile from '@/pages/profile'
 import CopyLogin from '@/pages/copyLogin'
 import MyVedios from '@/pages/myVedios'
+import ManagerUser from '@/pages/manager-user'
+import ManagerVedio from '@/pages/manager-vedio'
+import Player from '@/pages/player'
 
 Vue.use(Router)
 const Login = resolve => require(['@/pages/Login'], resolve)
@@ -35,19 +38,19 @@ export default new Router({
     //   ]
     //
     // },
-    // {
-    //   path: '/',
-    //   component: Home,
-    //   name: '管理',
-    //   menuShow: false,
-    //   iconCls: 'el-icon-printer',
-    //   children: [
-    //     {path: '/action-manager', component: ActionManager, name: '活动管理', menuShow: true},
-    //     {path: '/user-manager', component: UserManager, name: '用户管理', menuShow: true},
-    //     {path: '/other-manager', component: OtherManager, name: '其他', menuShow: true}
-    //   ]
-    //
-    // },
+    {
+      path: '/',
+      component: Home,
+      name: '管理',
+      menuShow: true,
+      iconCls: 'el-icon-printer',
+      children: [
+        // {path: '/action-manager', component: ActionManager, name: '活动管理', menuShow: true},
+        {path: '/manager-user', component: ManagerUser, name: '用户管理', menuShow: true},
+        {path: '/manage-vedio', component: ManagerVedio, name: '视频管理', menuShow: true}
+      ]
+
+    },
     {
       path: '/',
       component: Home,
@@ -66,6 +69,16 @@ export default new Router({
       iconCls: 'iconfont icon-setting1',
       children: [
         {path: '/myVedios', component: MyVedios, name: '我的主页', menuShow: true},
+      ]
+    },
+    {
+      path: '/',
+      component: Home,
+      name: '播放视频',
+      menuShow: true,
+      iconCls: 'iconfont icon-setting1',
+      children: [
+        {path: '/player', component: Player, name: '播放视频', menuShow: true},
       ]
     },
     {
