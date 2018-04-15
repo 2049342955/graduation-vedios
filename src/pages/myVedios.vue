@@ -158,7 +158,7 @@
 
                 </el-row>
                 <el-row :gutter="12" style="width: calc(100% - 16px)">
-                  <el-col :span="12">
+                  <el-col :span="14">
                     <el-form-item label="简介" prop="summary">
                       <el-input v-model="vedio.summary" suffix-icon="el-icon-edit" type="textarea"
                                 :rows="3"></el-input>
