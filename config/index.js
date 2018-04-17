@@ -12,13 +12,12 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api/': {
-        target: 'http://localhost:8090', // 你接口的域名
+        target: 'http://127.0.0.1:8090', // 你接口的域名
         secure: false,
         changeOrigin: true,
         pathRewrite: {
           '^/api/': ''
         }
-
       }
     },
 

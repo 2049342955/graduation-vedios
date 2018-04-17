@@ -77,35 +77,59 @@
             this.$emit("close");
             sessionStorage.setItem('user',JSON.stringify(user));
             sessionStorage.setItem('role',JSON.stringify(result.data.role));
-//            let roles = user.roles||[];
-//            var roleIs = 0;
-//            roles.forEach(role=>{
-//              if(role.roleName == '管理员'){
-//                roleIs = 2;
-//              }
-//            })
-//            console.log("roleIs",roleIs);
-//            console.log('router',this.$router.options.routes)
-//            if(roleIs == 2){
-//              (this.$router.options.routes||[]).faorEach(router=>{
+            let roles = result.data.role||[];
+            var roleIs = 0;
+            roles.forEach(role=>{
+              if(role.roleName == '管理员'){
+                roleIs = 2;
+              }
+            })
+            console.log("roleIs",roleIs);
+            console.log('router',this.$router.options.routes)
+            if(roleIs == 2){
+              console.log("jinl")
+//              (this.$router.options.routes||[]).forEach(router=>{
 //                if(router.name == '设置'){
 //                  router.menuShow=true;
 //                }
 //                if(router.name == '管理'){
 //                  router.menuShow=true;
 //                }
+//                if(router.name == '我的主页'){
+//                  console.log('wode ',router);
+//                }
 //              })
-//            }else{
+
+              for(let i=0;i<this.$router.options.routes.length;i++){
+                if(this.$router.options.routes[i].name == '设置'){
+                  this.$router.options.routes[i].menuShow=true;
+                }
+                if(this.$router.options.routes[i].name == '管理'){
+                  this.$router.options.routes[i].menuShow=true;
+                }
+                if(this.$router.options.routes[i].name == '我的主页'){
+                  this.$router.options.routes[i].children[0].menuShow=true;
+                }
+              }
+            }else{
 //              (this.$router.options.routes||[]).forEach(router=>{
 //                if(router.name == '设置'){
 //                  router.menuShow=true;
 //                }
 //              })
-//            }
-//            console.log('rrouter',this.$router.options.routes)
-//            let rout = DeepClone.deepClone(this.$router.options.routes);
-//            sessionStorage.setItem('router',JSON.stringify(rout));
-            //this.$router.push('/');
+              for(let i=0;i<this.$router.options.routes.length;i++){
+                if(this.$router.options.routes[i].name == '设置'){
+                  this.$router.options.routes[i].menuShow=true;
+                }
+                if(this.$router.options.routes[i].name == '我的主页'){
+                  this.$router.options.routes[i].children[0].menuShow=true;
+                }
+              }
+            }
+            console.log('rrouter',this.$router.options.routes)
+            let rout = DeepClone.deepClone(this.$router.options.routes);
+            sessionStorage.setItem('router',JSON.stringify(rout));
+            this.$router.push('/');
 
           }else{
             this.$message.error("登录失败，请检查用户名和密码");

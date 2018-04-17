@@ -9,17 +9,18 @@
         <!--<a href="/"><img src="../assets/logotxt.png"></a>-->
       </div>
       <div class="topbar-title">
-        <span style="font-size: 18px;color: #fff;">美妆</span>
+        <span style="font-size: 18px;color: #fff;">MeiLiMeiLi美妆视频网</span>
       </div>
       <div style="float: left;
         text-align: left;
         width: 300px;
         margin-left: 10px;
-        ">
+        " v-show="isSearch == ''">
         <el-input
           clearable
-          placeholder="请输入内容"
+          placeholder="请输入关键字，以，分割"
           prefix-icon="el-icon-search"
+          @keyup.enter.native="handleSelect"
           v-model="search">
         </el-input>
       </div>
@@ -52,18 +53,22 @@
           <i class="iconfont icon-menuunfold" v-show="collapsed"></i>
         </div>
         <!--导航菜单-->
-        <el-menu :default-active="defaultActiveIndex" router :collapse="collapsed" @select="handleSelect">
+        <el-menu :default-active="defaultActiveIndex" router :collapse="collapsed" @select="handleSelect"
+                 background-color="#545c64"
+                 text-color="#fff"
+                 active-text-color="#ffd04b"
+        >
           <template v-for="(item,index) in $router.options.routes" v-if="item.menuShow">
             <el-submenu v-if="!item.leaf" :index="index+''">
               <template slot="title"><i :class="item.iconCls"></i><span slot="title">{{item.name}}</span></template>
               <el-menu-item v-for="term in item.children" :key="term.path" :index="term.path" v-if="term.menuShow"
                             :class="$route.path==term.path?'is-active':''">
-                <i :class="term.iconCls"></i><span slot="title" style="color: lightsalmon;">{{term.name}}</span>
+                <i :class="term.iconCls"></i><span slot="title" >{{term.name}}</span>
               </el-menu-item>
             </el-submenu>
             <el-menu-item v-else-if="item.leaf&&item.children&&item.children.length" :index="item.children[0].path"
                           :class="$route.path==item.children[0].path?'is-active':''">
-              <i :class="item.iconCls"></i><span slot="title" style="color: white;">{{item.children[0].name}}</span>
+              <i :class="item.iconCls"></i><span slot="title" >{{item.children[0].name}}</span>
             </el-menu-item>
           </template>
         </el-menu>
@@ -111,6 +116,7 @@
         collapsed: false,
         loginVisible:false,
         search:'',
+        isSearch:'',
       }
     },
     methods: {
@@ -183,8 +189,14 @@
         }
         this.closeAll();
       },
+
+      handleSelect(){
+        this.$router.push({path:'/search',query:{search:this.search}});//类似post传参
+        this.isSearch = 'aa';
+      },
     },
     created(){
+      this.isSearch = '';
       let user = sessionStorage.getItem('user');
       let message = sessionStorage.getItem('message');
       if (user) {
